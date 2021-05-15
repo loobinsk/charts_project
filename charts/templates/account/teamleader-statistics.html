@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1 class="teamleaders-statistics"><a href="">{{ temaleader.user.username }}</a> statistics</h1>
+	<form method="post" action=".">
+		{% csrf_token %}
+		<div class="row" style="margin-top: 30px; background-color: white; padding: 20px; width: 90%; height: 10%; margin-left: 5%;">
+			<p>please choose a date using the following form:</p>
+			<div class="col">
+				<input autocomplete="off" id="data1" name="date1" type="text" class="form-control" placeholder="First date" aria-label="First name">
+			</div>
+			<div class="col">
+				<input autocomplete="off" id="data2" name='date2' type="text" class="form-control" placeholder="Last date" aria-label="Last name">
+			</div>
+			<div style="margin-top: 10px;" class="col-12">
+				<button type="submit" class="btn btn-primary">update</button>
+			</div>
+		</div>
+	</form>
+    <div class="bar-chart" id="bar-chart"></div>
+    <div class="line-chart" id="line-chart"></div>
+    <div class="pie-chart" id="pie-chart1"></div>
+    <div class="pie-chart" id="pie-chart2"></div>
+    {% for i in data %}
+      {{ i.user }}
+    {% endfor %}
+
+    <script type="text/javascript">
+		  $( function() {
+		    $( "#data1" ).datepicker({dateFormat: "yy-mm-dd"});
+		  } );
+		  $( function() {
+		    $( "#data2" ).datepicker({dateFormat: "yy-mm-dd"});
+		  } );
+    </script>
+    <script type="text/javascript">
+      $( function() {
+        $( "#data1" ).datepicker({dateFormat: "yy-mm-dd"});
+      } );
+      $( function() {
+        $( "#data2" ).datepicker({dateFormat: "yy-mm-dd"});
+      } );
+    </script>
+    <script>
+      //bar chart
+    anychart.onDocumentLoad(function() {
+      // create chart and set data
+      var chart = anychart.column([
+        {% for i in data %}
+          ["{{ i.date }}", {{ i.data1 }}],
+        {% endfor %}
+      ]);
+      // set chart title
+      chart.title("chart title");
+      // set chart container and draw
+      chart.container("bar-chart").draw();
+    });
+
+    // line-chart
+    anychart.onDocumentLoad(function () {
+      // create an instance of a pie chart
+      var chart = anychart.pie();
+      // set the data
+        chart.data([
+        {% for i in data %}
+          ["{{ i.date }}", {{ i.data2 }}],
+        {% endfor %}
+      ]);
+      // set chart title
+      chart.title("chart title");
+      // set the container element 
+      chart.container("pie-chart1");
+      // initiate chart display
+      chart.draw();
+    });
+
+    anychart.onDocumentLoad(function () {
+      // create an instance of a pie chart
+      var chart = anychart.pie();
+      // set the data
+        chart.data([
+        {% for i in data %}
+          ["{{ i.date }}", {{ i.data3 }}],
+        {% endfor %}
+      ]);
+      // set chart title
+      chart.title("chart title");
+      // set the container element 
+      chart.container("pie-chart2");
+      // initiate chart display
+      chart.draw();
+    });
+    </script>
+
+  <script>
+
+    anychart.onDocumentReady(function () {
+      // create data set on our data
+      var dataSet = anychart.data.set(getData());
+
+      // map data for the first series, take x from the zero column and value from the first column of data set
+      var firstSeriesData = dataSet.mapAs({ x: 0, value: 1 });
+
+      // map data for the second series, take x from the zero column and value from the second column of data set
+      var secondSeriesData = dataSet.mapAs({ x: 0, value: 2 });
+
+      // map data for the third series, take x from the zero column and value from the third column of data set
+      var thirdSeriesData = dataSet.mapAs({ x: 0, value: 3 });
+
+      var fooSeriesData = dataSet.mapAs({ x: 0, value: 4 });
+      
+      var fiveSeriesData = dataSet.mapAs({ x: 0, value: 5 });
+      // create line chart
+      var chart = anychart.line();
+
+      // turn on chart animation
+      chart.animation(true);
+
+      // set chart padding
+      chart.padding([10, 20, 5, 20]);
+
+      // turn on the crosshair
+      chart.crosshair().enabled(true).yLabel(false).yStroke(null);
+
+      // set tooltip mode to point
+      chart.tooltip().positionMode('point');
+
+      // set chart title text settings
+      chart.title(
+        'chart title'
+      );
+
+      // set yAxis title
+      // create first series with mapped data
+      var firstSeries = chart.line(firstSeriesData);
+      firstSeries.name('data1');
+      firstSeries.hovered().markers().enabled(true).type('circle').size(4);
+      firstSeries
+        .tooltip()
+        .position('right')
+        .anchor('left-center')
+        .offsetX(5)
+        .offsetY(5);
+
+      // create second series with mapped data
+      var secondSeries = chart.line(secondSeriesData);
+      secondSeries.name('data2');
+      secondSeries.hovered().markers().enabled(true).type('circle').size(4);
+      secondSeries
+        .tooltip()
+        .position('right')
+        .anchor('left-center')
+        .offsetX(5)
+        .offsetY(5);
+
+      // create third series with mapped data
+      var thirdSeries = chart.line(thirdSeriesData);
+      thirdSeries.name('data3');
+      thirdSeries.hovered().markers().enabled(true).type('circle').size(4);
+      thirdSeries
+        .tooltip()
+        .position('right')
+        .anchor('left-center')
+        .offsetX(5)
+        .offsetY(5);
+
+      var fooSeries = chart.line(fooSeriesData);
+      fooSeries.name('data4');
+      fooSeries.hovered().markers().enabled(true).type('circle').size(4);
+      fooSeries
+        .tooltip()
+        .position('right')
+        .anchor('left-center')
+        .offsetX(5)
+        .offsetY(5);
+
+      var fiveSeries = chart.line(fiveSeriesData);
+      fiveSeries.name('data5');
+      fiveSeries.hovered().markers().enabled(true).type('circle').size(4);
+      fiveSeries
+        .tooltip()
+        .position('right')
+        .anchor('left-center')
+        .offsetX(5)
+        .offsetY(5);
+
+
+      // turn the legend on
+      chart.legend().enabled(true).fontSize(13).padding([0, 0, 10, 0]);
+
+      // set container id for the chart
+      chart.container('line-chart');
+      // initiate chart drawing
+      chart.draw();
+    });
+
+    function getData() {
+      return [
+        {% for i in data %}
+          ['{{ i.date }}', {{ i.data1 }}, {{ i.data2 }}, {{ i.data3 }}, {{ i.data4 }}, {{ i.data5 }}],
+        {% endfor %}
+      ];
+    }
+  
+</script>
+{% endblock %}

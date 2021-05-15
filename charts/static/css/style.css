@@ -1,0 +1,143 @@
+
+
+.margin-left {
+	margin-left: 5%;
+}
+
+.logout:hover {
+	color: white;
+	text-decoration: underline;
+}
+
+.tm-form-worker {
+	width: 200px;
+	margin-left: 5%;
+}
+
+
+.form_tm {
+	width: 60%;
+	margin-left: 20%;
+	text-align: center;
+	margin-top: 3%;
+}
+
+.username {
+	margin-top: 20px; 
+	margin-left: 5%; 
+	color: #1a1a1a;
+}
+
+.auth_image {
+	width: 50px;
+	height: 50px;
+	border-radius: 20px;
+}
+
+.bad-message {
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+.table-workers {
+	margin-left: 20px;
+}
+
+
+.teamleaders-statistics {
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+.image-tl {
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+}
+
+@media screen and (min-width: 900px) {
+
+	.teamleaders-list {
+		display: inline;
+	}
+
+	.login-form {
+		width: 20%;
+		text-align: center;
+		margin-left: 40%;
+		margin-top: 10%;
+	}
+
+	.logout {
+		color: red;
+		margin-left: 10px;
+		margin-right: 10px;
+		text-decoration: none;
+		font-size: 18px;
+	}
+
+	.button-for-teamlead-check-workers {
+		margin-top: 20px;
+	}
+
+	.bar-chart {
+		margin-top: 50px; 
+		width: 90%; 
+		height: 40vh; 
+		margin-left: 5%;
+	}
+
+	.line-chart {
+		margin-top: 50px; 
+		width: 90%; 
+		height: 40vh; 
+		margin-left: 5%;
+	}
+
+	.pie-chart {
+		margin-top: 50px; 
+		width: 42.5%; 
+		height: 40vh; 
+		display: inline-block;
+		margin-left: 5%;
+	}
+
+}
+
+@media screen and (max-width: 900px) {
+
+	.login-form {
+		width: 60%;
+		text-align: center;
+		margin-left: 20%;
+		margin-top: 30%;
+	}
+
+	.logout {
+		color: red;
+		text-decoration: none;
+		font-size: 18px;
+	}
+
+	.bar-chart {
+		margin-top: 50px; 
+		width: 90%; 
+		height: 20vh; 
+		margin-left: 5%;
+	}
+
+	.line-chart {
+		margin-top: 50px; 
+		width: 90%; 
+		height: 20vh; 
+		margin-left: 5%;
+	}
+
+	.pie-chart {
+		margin-top: 50px; 
+		width: 90%; 
+		height: 20vh; 
+		margin-left: 5%;
+	}
+
+}

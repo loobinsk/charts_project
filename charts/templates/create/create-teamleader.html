@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<div class="form_tm">
+		<h1>Create new TeamLeader</h1>
+		<form action="." method="post">
+			{% csrf_token %}
+			<label>username</label>
+			<input class="form-control" name="username" autocomplete="off">
+			<br>
+			<label>password</label>
+			<input class="form-control" name="password" autocomplete="off">
+			<br>
+			<button type="submit" class="btn btn-primary">Create TeamLeader</button>
+		</form>
+	</div>
+{% endblock %}
